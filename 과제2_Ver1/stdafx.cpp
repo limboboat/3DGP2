@@ -7,9 +7,38 @@
 #include "DDSTextureLoader12.h"
 #include "WICTextureLoader12.h"
 
+
+int gnCurrentParticles = 0;
+
 UINT gnRtvDescriptorIncrementSize = 0;
 UINT gnDsvDescriptorIncrementSize = 0;
 UINT gnCbvSrvDescriptorIncrementSize = 0;
+
+
+void OutputString(_TCHAR* pString, float fValue)
+{
+	TCHAR pstrDebug[256] = { 0 };
+
+	_stprintf_s(pstrDebug, 256, _T("%s %f\n"), pString, fValue);
+	OutputDebugString(pstrDebug);
+}
+
+void OutputString(_TCHAR* pString, int nValue)
+{
+	TCHAR pstrDebug[256] = { 0 };
+
+	_stprintf_s(pstrDebug, 256, _T("%s %d\n"), pString, nValue);
+	OutputDebugString(pstrDebug);
+}
+
+void OutputString(_TCHAR* pString, UINT64 nValue)
+{
+	TCHAR pstrDebug[256] = { 0 };
+
+	_stprintf_s(pstrDebug, 256, _T("%s %u %u\n"), pString, (unsigned int)((nValue >> 32) & 0x0000ffff), (unsigned int)(nValue & 0x0000ffff));
+	OutputDebugString(pstrDebug);
+}
+
 
 void WaitForGpuComplete(ID3D12CommandQueue* pd3dCommandQueue, ID3D12Fence* pd3dFence, UINT64 nFenceValue, HANDLE hFenceEvent)
 {
@@ -255,3 +284,9 @@ ID3D12Resource* CreateTexture2DResource(ID3D12Device* pd3dDevice, ID3D12Graphics
 	return(pd3dTexture);
 }
 
+void SwapResourcePointer(ID3D12Resource** ppd3dResourceA, ID3D12Resource** ppd3dResourceB)
+{
+	ID3D12Resource* pd3dTempResource = *ppd3dResourceA;
+	*ppd3dResourceA = *ppd3dResourceB;
+	*ppd3dResourceB = pd3dTempResource;
+}

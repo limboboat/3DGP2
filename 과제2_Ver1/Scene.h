@@ -65,6 +65,10 @@ public:
 
 	CPlayer *m_pPlayer = NULL;
 
+
+	void OnPrepareRender(ID3D12GraphicsCommandList* pd3dCommandList, CCamera* pCamera);
+	void RenderParticle(ID3D12GraphicsCommandList* pd3dCommandList, CCamera* pCamera);
+	void OnPostRenderParticle();
 public:
 	ID3D12RootSignature					*m_pd3dGraphicsRootSignature = NULL;
 
@@ -84,4 +88,7 @@ public:
 
 	ID3D12Resource						*m_pd3dcbLights = NULL;
 	LIGHTS								*m_pcbMappedLights = NULL;
+
+	CParticleObject**					m_ppParticleObjects = NULL;
+	int									m_nParticleObjects = 0;
 };

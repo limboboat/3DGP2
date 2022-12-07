@@ -267,16 +267,16 @@ float4 PSTerrain(VS_TERRAIN_OUTPUT input) : SV_TARGET
 //====================================ÆÄÆ¼Å¬
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-Texture2D gtxtTexture : register(t0);
-Texture2D<float4> gtxtParticleTexture : register(t1);
+Texture2D gtxtTexture : register(t17);
+Texture2D<float4> gtxtParticleTexture : register(t18);
 //Texture1D<float4> gtxtRandom : register(t2);
-Buffer<float4> gRandomBuffer : register(t2);
-Buffer<float4> gRandomSphereBuffer : register(t3);
+Buffer<float4> gRandomBuffer : register(t19);
+Buffer<float4> gRandomSphereBuffer : register(t20);
 
-SamplerState gWrapSamplerState : register(s0);
-SamplerState gClampSamplerState : register(s1);
-SamplerState gMirrorSamplerState : register(s2);
-SamplerState gPointSamplerState : register(s3);
+SamplerState gWrapSamplerState : register(s2);
+SamplerState gClampSamplerState : register(s3);
+SamplerState gMirrorSamplerState : register(s4);
+SamplerState gPointSamplerState : register(s5);
 
 struct VS_TEXTURED_INPUT
 {

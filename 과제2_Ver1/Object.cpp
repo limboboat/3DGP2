@@ -514,6 +514,7 @@ void CGameObject::ReleaseShaderVariables()
 
 void CGameObject::ReleaseUploadBuffers()
 {
+
 	for (int i = 0; i < m_nMeshes; i++)
 	{
 		if (m_ppMeshes[i]) m_ppMeshes[i]->ReleaseUploadBuffers();
@@ -526,6 +527,7 @@ void CGameObject::ReleaseUploadBuffers()
 
 	if (m_pSibling) m_pSibling->ReleaseUploadBuffers();
 	if (m_pChild) m_pChild->ReleaseUploadBuffers();
+
 }
 
 void CGameObject::UpdateTransform(XMFLOAT4X4 *pxmf4x4Parent)
@@ -873,7 +875,7 @@ CSkyBox::CSkyBox(ID3D12Device* pd3dDevice, ID3D12GraphicsCommandList* pd3dComman
 	SetMesh(0, pSkyBoxMesh);
 
 	CTexture *pSkyBoxTexture = new CTexture(1, RESOURCE_TEXTURE_CUBE, 0, 1);
-	pSkyBoxTexture->LoadTextureFromDDSFile(pd3dDevice, pd3dCommandList, L"SkyBox/SkyBox_0.dds", RESOURCE_TEXTURE_CUBE, 0);
+	pSkyBoxTexture->LoadTextureFromDDSFile(pd3dDevice, pd3dCommandList, "SkyBox/SkyBox_0.dds", RESOURCE_TEXTURE_CUBE, 0);
 
 	CSkyBoxShader *pSkyBoxShader = new CSkyBoxShader();
 	pSkyBoxShader->CreateShader(pd3dDevice, pd3dCommandList, pd3dGraphicsRootSignature);
@@ -1087,7 +1089,8 @@ CBillboardObject::~CBillboardObject()
 void CBillboardObject::Animate(CCamera* pCamera, float fDeltaTime)
 {
 	XMFLOAT3 xmf3CameraPosition = pCamera->GetPosition();
-	SetLookAt(xmf3CameraPosition, XMFLOAT3(0.0f, 1.0f, 0.0f));
+	XMFLOAT3 xmf3Up =
+	SetLookAt(xmf3CameraPosition, LoadTextureFromFile);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////

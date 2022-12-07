@@ -44,6 +44,10 @@ void CMesh::ReleaseUploadBuffers()
 		if (m_ppd3dSubSetIndexUploadBuffers) delete[] m_ppd3dSubSetIndexUploadBuffers;
 		m_ppd3dSubSetIndexUploadBuffers = NULL;
 	}
+	if (m_pd3dVertexUploadBuffer) m_pd3dVertexUploadBuffer->Release();
+	if (m_pd3dIndexUploadBuffer) m_pd3dIndexUploadBuffer->Release();
+	m_pd3dVertexUploadBuffer = NULL;
+	m_pd3dIndexUploadBuffer = NULL;
 }
 
 void CMesh::Render(ID3D12GraphicsCommandList* pd3dCommandList)

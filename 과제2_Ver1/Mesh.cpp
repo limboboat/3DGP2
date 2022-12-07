@@ -535,9 +535,10 @@ CHeightMapImage::~CHeightMapImage()
 {
 }
 
-XMFLOAT3 CHeightMapImage::GetHeightMapNormal(int x, int z)
+XMFLOAT3& CHeightMapImage::GetHeightMapNormal(int x, int z)
 {
-	if ((x < 0.0f) || (z < 0.0f) || (x >= m_nWidth) || (z >= m_nLength)) return(XMFLOAT3(0.0f, 1.0f, 0.0f));
+	XMFLOAT3 tmp = XMFLOAT3(0.0f, 1.0f, 0.0f);
+	if ((x < 0.0f) || (z < 0.0f) || (x >= m_nWidth) || (z >= m_nLength)) return(tmp);
 
 	int nHeightMapIndex = x + (z * m_nWidth);
 	int xHeightMapAdd = (x < (m_nWidth - 1)) ? 1 : -1;

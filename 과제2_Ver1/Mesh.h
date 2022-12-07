@@ -229,7 +229,7 @@ public:
 
 	XMFLOAT3 GetScale() { return(m_xmf3Scale); }
 	float GetHeight(float x, float z, bool bReverseQuad = false);
-	XMFLOAT3 GetHeightMapNormal(int x, int z);
+	XMFLOAT3& GetHeightMapNormal(int x, int z);
 };
 
 class CHeightMapGridMesh : public CMesh
